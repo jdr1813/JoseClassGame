@@ -19,13 +19,16 @@ public class CharacterControls : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector3.right * Time.deltaTime * Input.GetAxis("Horizontal") * moveSpeed);
+        //transform.Translate(Vector3.right * Time.deltaTime * Input.GetAxis("Horizontal") * moveSpeed);
+        GetComponent<Rigidbody>().AddForce(new Vector3(Input.GetAxis("Horizontal"), 0, 0) * moveSpeed);
+
         if (Input.GetKeyDown("space") && canJump && jumpsLeft > 0)
         {
             GetComponent<Rigidbody>().AddForce(Vector3.up * jumpHeight);
             if (!isFlying) canJump = false;
             jumpsLeft--;
         }
+        
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -40,14 +43,7 @@ public class CharacterControls : MonoBehaviour
             canJump = false;
             print("not ground");
         }
-        if (collision.gameObject.name == "RightBoundary")  
-        {
-            rb.velocity = Vector3.zero;
-        }
-        if (collision.gameObject.name == "LeftBoundary")
-        {
-            rb.velocity = Vector3.zero;
-        }
+      
 
     }
     private void OnTriggerEnter(Collider other)
