@@ -6,10 +6,10 @@ public class CharacterControls : MonoBehaviour
 {
     public int jumpHeight = 500;
     bool canJump = true;
-    public Rigidbody rb;
     private int jumpsLeft = 0;
     private bool isFlying = false;
     public float moveSpeed = 3f;
+    public GameObject projectilePrefab;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,7 +28,12 @@ public class CharacterControls : MonoBehaviour
             if (!isFlying) canJump = false;
             jumpsLeft--;
         }
-        
+        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+        {
+            Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+        }
+
+
     }
 
     private void OnCollisionEnter(Collision collision)
