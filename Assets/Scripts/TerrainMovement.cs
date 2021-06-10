@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class TerrainMovement : MonoBehaviour
 {
-    private TerrainBehavior tBehavior;
+    private LevelBehavior tBehavior;
     // Start is called before the first frame update
     void Start()
     {
-       tBehavior = FindObjectOfType<TerrainBehavior>();
+       tBehavior = FindObjectOfType<LevelBehavior>();
     }
 
     // Update is called once per frame
